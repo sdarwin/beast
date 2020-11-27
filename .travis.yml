@@ -89,6 +89,27 @@ matrix:
           sources:
             - *base_sources
 
+    # GCC 6.0, Debug + Coverage Bionic
+    - os: linux
+      dist: bionic
+      compiler: g++-6
+      env:
+        - VARIANT=beast_coverage
+        - TOOLSET=gcc
+        - COMPILER=g++-6
+        - CXXSTD=14
+      before_install:
+        - pip install --user https://github.com/codecov/codecov-python/archive/master.zip
+      addons:
+        apt:
+          packages:
+            - g++-6
+            - lcov
+            - libssl-dev
+            - *base_packages
+          sources:
+            - *base_sources
+
     # Default clang++ with libc++
     - os: linux
       compiler: clang++-libc++

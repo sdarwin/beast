@@ -36,7 +36,8 @@ struct write_buffers_generator_op
 {
     write_buffers_generator_op(
         AsyncWriteStream& s, BuffersGenerator g)
-        : s_(s), g_(std::move(g))
+        : s_(s)
+        , g_(std::move(g))
     {
     }
 

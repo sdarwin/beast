@@ -17,8 +17,9 @@ how much of the data has been consumed, and repeatedly query for buffers until
 no more data is available, or the generator indicates an error condition.
 
 In this way, serializers can be adapted as [*BuffersGenerator], for example
-__message_generator__ which provides a type-erased interface for a variety of
-concrete http message types.
+[link beast.ref.boost__beast__http__message_generator
+`http::message_generator`] which provides a type-erased interface for a variety
+of concrete http message types.
 
 Overloads of [link beast.ref.boost__beast__write `write`] and [link
 beast.ref.boost__beast__async_write `async_write`] operations are provided as
@@ -62,13 +63,17 @@ In this table:
         generator implementation.
 
         Whether additional buffers are generated when unconsumed data is
-        already available at the time of the call is defined by the implementation.
+        already available at the time of the call is defined by the
+        implementation.
 
         The returned value is the __ConstBufferSequence__ of type `b`
         representing unconsumed data.
 
-        If the total size of the buffers in the returned sequence is `0`, the
-        generator is considered to have completed.
+        If the length of the returned sequence is `0`, the generator is
+        considered to have completed.
+
+        The result of calling invoking members on `g` after it has completed is
+        unspecified.
 
         The function will ensure that `ec.failed()` is `false` if there was no
         error or set to the appropriate error code if there was one. 

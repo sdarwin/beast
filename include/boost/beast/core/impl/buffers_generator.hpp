@@ -54,7 +54,7 @@ struct write_buffers_generator_op
                     auto cb = g_.prepare(ec);
                     if(ec)
                         goto complete;
-                    if(detail::buffers_empty(cb))
+                    if(detail::buffer_sequence_empty(cb))
                         goto complete;
                     s_.async_write_some(
                         cb, std::move(self));

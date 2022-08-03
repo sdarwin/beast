@@ -196,6 +196,12 @@ jobs:
       - name: Setup Boost
         shell: bash
         run: |
+          # temporary debugging
+          set -xe
+          echo "This is /usr/local/opt/"
+          ls -al /usr/local/opt/ || true
+          echo "This is /opt/homebrew/opt/"
+          ls -al /opt/homebrew/opt/ || true
           if [[ $(uname) =~ [Ll]inux ]]; then
             echo Installing locales for ${TRAVIS_OS_NAME} ...
             sudo /usr/sbin/locale-gen fr_FR

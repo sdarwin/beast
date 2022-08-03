@@ -223,7 +223,7 @@ jobs:
           ./bootstrap.sh
           ./b2 -d0 headers
 
-      - name: Macos specific
+      - name: Macos 10.15 specific
         if: matrix.os == 'macos-10.15'
         run: |
           echo "macos - set up homebrew openssl"
@@ -236,6 +236,22 @@ jobs:
               <variant>debug:<library-path>/usr/local/opt/openssl/lib
               <target-os>windows<variant>debug:<library-path>/usr/local/opt/openssl/debug/lib
               <variant>release:<library-path>/usr/local/opt/openssl/lib
+            ;
+          EOF
+
+      - name: Macos 11 specific
+        if: matrix.os == 'macos-11'
+        run: |
+          echo "macos - set up homebrew openssl"
+          cat > ~/user-config.jam <<EOF
+          import os ;
+          local OPENSSL_ROOT = [ os.environ OPENSSL_ROOT ] ;
+          project
+            : requirements
+              <include>/opt/homebrew/opt/openssl/include
+              <variant>debug:<library-path>/opt/homebrew/opt/openssl/lib
+              <target-os>windows<variant>debug:<library-path>/opt/homebrew/opt/openssl/debug/lib
+              <variant>release:<library-path>/opt/homebrew/opt/openssl/lib
             ;
           EOF
 

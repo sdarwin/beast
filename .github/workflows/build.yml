@@ -258,6 +258,10 @@ jobs:
         shell: bash
         run: |
           if [[ $(uname) =~ [Ll]inux ]]; then
+            set -xe
+            whoami || true
+            pwd || true
+            sudo pwd || true
             echo Installing locales for ${TRAVIS_OS_NAME} ...
             sudo /usr/sbin/locale-gen fr_FR
             sudo /usr/sbin/locale-gen en_GB
